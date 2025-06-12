@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
     "@openai/agents": "^0.0.7",
     "@openai/agents-realtime": "^0.0.7",
     "axios": "^1.9.0",
