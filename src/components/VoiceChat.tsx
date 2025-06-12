@@ -1,10 +1,9 @@
-'use client';
+'use client'; // クライアントコンポーネントとして扱う
 
 import { useCallback, useState, useRef } from 'react';
 import { RealtimeAgent, RealtimeSession, type RealtimeItem } from '@openai/agents/realtime';
 
 export default function VoiceChat() {
-  // useRef の型を RealtimeSession | null に変更
   const sessionRef = useRef<RealtimeSession | null>(null);  
   const [history, setHistory] = useState<RealtimeItem[]>([]);
   const [connected, setConnected] = useState(false);
@@ -32,14 +31,11 @@ export default function VoiceChat() {
   }, [connected]);
 
   const disconnect = () => {
-    // sessionRef.current が null でないことを確認してから disconnect を呼び出す
     if (sessionRef.current) {
       sessionRef.current.close();
-      sessionRef.current = null;  // close の後にリセット
+      sessionRef.current = null;  
       setConnected(false);
       setHistory([]);
-    } else {
-      console.error("No active session to disconnect.");
     }
   };
 
@@ -51,7 +47,7 @@ export default function VoiceChat() {
       <div className="whitespace-pre-wrap">
         {history.map((item, idx) => (
           <p key={idx}>
-            {item.type === 'message' ? `${item.role === 'user' ? '👤' : '��'} ${
+            {item.type === 'message' ? `${item.role === 'user' ? '👤' : '🤖'} ${
               item.content[0]?.type === 'input_text' || item.content[0]?.type === 'text' ? item.content[0].text :
               item.content[0]?.type === 'input_audio' ? item.content[0].transcript ?? '' : ''
             }` : `🔧 ${item.type}`}
