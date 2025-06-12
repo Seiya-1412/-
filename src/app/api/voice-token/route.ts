@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic';
 
 // src/app/api/voice-token/route.ts
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import axios, { AxiosError } from 'axios';  // AxiosErrorをインポート
 
 // POST リクエストで OpenAI API から client_secret を取得
